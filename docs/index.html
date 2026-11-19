@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Демонстрація моніторингу корупційних ризиків НАВС, від планування заходу до перевірки доказу.">
+  <title>Моніторинг корупційних ризиків НАВС</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./demo.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="НАВС, головна сторінка">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span><strong>НАВС</strong><small>Моніторинг ризиків</small></span>
+      </a>
+      <nav aria-label="Основна навігація">
+        <a href="#process">Як це працює</a>
+        <a href="#roles">Ролі</a>
+        <a class="nav-demo" href="#demo">Демо</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Демонстраційний модуль НАВС</p>
+          <h1 id="hero-title">Моніторинг корупційних <em>ризиків</em></h1>
+          <p class="hero-lead">Перегляньте заходи, перевірте строки та пройдіть шлях від подання доказу до рішення уповноваженого.</p>
+          <a class="button button-primary" href="#demo">Відкрити демо</a>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="preview">
+            <div class="preview-title">
+              <span class="preview-mark"></span>
+              <span>Реєстр заходів</span>
+              <span class="preview-meta">Демо</span>
+            </div>
+            <div class="preview-content">
+              <div class="preview-summary">
+                <div><span>Заходи</span><strong>04</strong></div>
+                <div><span>Підтверджено</span><strong>01</strong></div>
+              </div>
+              <div class="preview-record">
+                <div><strong>Моніторинг цін</strong><small>Відділ закупівель</small></div>
+                <span class="preview-state">Заплановано</span>
+              </div>
+              <div class="preview-record">
+                <div><strong>Перевірка конфлікту інтересів</strong><small>Освітній процес</small></div>
+                <span class="preview-state preview-confirmed">Підтверджено</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <h2 id="process-title">Як працює моніторинг</h2>
+        <ol class="process-list">
+          <li><h3>Запланувати</h3><p>Визначити захід, відповідальний підрозділ, строк та індикатор виконання.</p></li>
+          <li><h3>Подати доказ</h3><p>Додати підтвердження того, що захід виконано.</p></li>
+          <li><h3>Перевірити</h3><p>Переглянути доказ і підтвердити захід або повернути його на доопрацювання.</p></li>
+          <li><h3>Підбити підсумки</h3><p>Побачити, скільки заходів підтверджено й скільки прострочено.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="demo section" id="demo" tabindex="-1" aria-labelledby="demo-title">
+      <div class="container">
+        <div class="demo-heading">
+          <div>
+            <h2 id="demo-title">Демонстраційний реєстр</h2>
+            <p>Записи та докази вигадані. Дата демо — <time id="demo-date" datetime="2027-12-15">15 грудня 2027 року</time>.</p>
+          </div>
+          <button class="button button-secondary" id="reset-demo" type="button" hidden>Почати заново</button>
+        </div>
+        <noscript><p>Щоб скористатися реєстром, увімкніть JavaScript у браузері.</p></noscript>
+
+        <div id="workspace" hidden>
+          <dl class="metrics" aria-label="Підсумки за всіма заходами">
+            <div class="metric metric-confirmed"><dt>Підтверджено</dt><dd id="confirmed-count">—</dd></div>
+            <div class="metric metric-overdue"><dt>Прострочено</dt><dd id="overdue-count">—</dd></div>
+          </dl>
+
+          <div class="toolbar">
+            <div class="field">
+              <label for="demo-role">Роль у демо</label>
+              <select id="demo-role">
+                <option value="executor">Виконавець</option>
+                <option value="reviewer">Уповноважений</option>
+                <option value="observer">Спостерігач</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="status-filter">Статус заходу</label>
+              <select id="status-filter">
+                <option value="all">Усі статуси</option>
+                <option value="planned">Заплановано</option>
+                <option value="review">На перевірці</option>
+                <option value="revision">Потребує доопрацювання</option>
+                <option value="confirmed">Підтверджено</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="feedback" id="demo-feedback" role="status" tabindex="-1"></p>
+          <p class="empty-state" id="no-matches" role="status" hidden>Заходів із таким статусом немає.</p>
+          <ul class="register" id="measure-list" aria-label="Заходи з моніторингу"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="roles section" id="roles" aria-labelledby="roles-title">
+      <div class="container">
+        <h2 id="roles-title">Ролі в моніторингу</h2>
+        <div class="role-grid">
+          <article><h3>Виконавець</h3><p>Подає підтвердження виконання заходу й виправляє його за коментарем.</p></article>
+          <article><h3>Уповноважений</h3><p>Перевіряє доказ і ухвалює рішення щодо виконання заходу.</p></article>
+          <article><h3>Спостерігач</h3><p>Переглядає реєстр і підсумки виконання.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">НАВС · Демо моніторингу корупційних ризиків</div>
+  </footer>
+</body>
+</html>
